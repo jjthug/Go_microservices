@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "front_end"
+		},
+		{
+			"path": "broker_service"
+		},
+		{
+			"path": "project"
+		},
+		{
+			"path": "authentication-service"
+		}
+	]
+}
