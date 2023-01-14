@@ -5,7 +5,7 @@ services:
   broker-service:
     build:
       context: ../broker-service
-      dockerfile: ../broker-service/broken-service.dockerfile
+      dockerfile: ../broker-service/broker-service.dockerfile
     restart: always
     ports:
       - "8080:80"
@@ -84,3 +84,21 @@ services:
       MAIL_PASSWORD: ""
       FROM_NAME: "Johnny Sins"
       FROM_ADDRESS: john.sins@blah.com
+
+  rabbitmq:
+    image: 'rabbitmq:3.9-alpine'
+    ports:
+      - "5672:5672"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./db-data/rabbitmq/:/var/lib/rabbitmq/
+
+  listener-service:
+    build:
+      context: ./../listener-service
+      dockerfile: ./../listener-service/listener-service.dockerfile
+    deploy:
+      mode: replicated
+      replicas: 1
